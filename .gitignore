@@ -1,0 +1,13 @@
+.DS_Store
+.git
+.gitx
+
+# .gitignore
+*.bat
+*.lnk
+*.log
+*.url
+*~
+node_modules
+public
+Thumbs.db

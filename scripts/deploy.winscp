@@ -1,0 +1,37 @@
+# Deploy to webserver using WinSCP for SFTP on Windows.
+# Build site first using brunch - 'brunch b' or 'brunch w'.
+
+# See
+#   http://winscp.net/eng/docs/guide_automation
+#   http://winscp.net/eng/docs/scriptcommand_synchronize
+
+
+# Automatically abort script on errors
+option batch abort
+
+# Disable overwrite confirmations that conflict with the previous
+option confirm off
+
+# Connect to SFTP server using public key
+# open sftp://ec2-user@ec2-52-37-46-131.us-west-2.compute.amazonaws.com/ -hostkey="ssh-ed25519 256 9f:19:e3:05:28:86:cc:ed:d0:7f:fd:98:52:12:19:d8" -privatekey="C:\Users\bburns\home\.ssh\amazon-pem-2016-03-11.ppk" -rawsettings FSProtocol=2
+open sftp://ec2-user@owl-syme.org/ -hostkey="ssh-rsa 2048 70:72:42:69:f7:e1:14:6c:24:b9:5f:92:03:d9:1d:2e" -privatekey="C:\Users\bburns\home\.ssh\amazon-pem-2016-03-11.ppk" -rawsettings FSProtocol=2
+
+# Make sure the destination folders exist
+# throws error if already exist
+#mkdir /home/ec2-user/sites/arttour
+#mkdir /home/ec2-user/sites/arttour/public
+#mkdir /home/ec2-user/sites/arttour/server
+#mkdir /home/ec2-user/sites/arttour/models
+
+# Synchronize from here to the remote location, deleting obsolete files
+# Note: don't need client folder
+synchronize remote -delete client /home/ec2-user/sites/arttour/client -filemask=|node_modules/
+synchronize remote -delete server /home/ec2-user/sites/arttour/server -filemask=|node_modules/
+
+# Transfer individual files
+# Note: need the trailing slash
+# put package.json /home/ec2-user/sites/arttour/
+
+# Disconnect
+exit
+
