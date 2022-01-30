@@ -1,10 +1,10 @@
 {
-  "name": "ArtTourClient",
+  "name": "arttour-client",
   "description": "",
   "version": "0.1.0",
   "keywords": [],
   "author": "Brian Burns",
-  "homepage": "http://owl-syme.org/arttour",
+  "homepage": "https://brianburns.org/arttour",
   "bugs": {},
   "private": "true",
   "scripts": {
